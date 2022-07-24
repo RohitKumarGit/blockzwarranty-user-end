@@ -1,0 +1,2 @@
+def sumOfArray(arr):
+    
