@@ -91,6 +91,7 @@ const Home: NextPage = () => {
       );
       message.success("Token transferred successfully , hash:" + result.hash);
     } catch (error) {
+      console.log(error);
       message.error("Some thing went wrong");
     }
 
@@ -202,7 +203,7 @@ const Home: NextPage = () => {
               title="Warranty Cards"
               subTitle="This page contains warranty cards in the form of NFT tokens "
             />
-            <Space size={4}>
+            <Space size={10}>
               {warrantyTokens.map((nft) => (
                 <Card
                   actions={[
@@ -220,13 +221,14 @@ const Home: NextPage = () => {
                     </Link>,
                   ]}
                   hoverable
-                  style={{ width: 300 }}
+                  style={{ width: 200 }}
                   cover={
                     <img
                       alt="example"
+                      height={100}
                       src={
                         (nft.metadata as any).image
-                          ? (nft.metadata as any).image
+                          ? constants.NFT_SERVER + (nft.metadata as any).image
                           : "/assets/default.jpeg"
                       }
                     />
