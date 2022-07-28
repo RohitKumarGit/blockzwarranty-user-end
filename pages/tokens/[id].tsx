@@ -38,15 +38,10 @@ const TokenDetails: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
     setLoading(true);
-    console.log(router.query.id);
-    setToken(router.query.id as any);
     allMintedTokenQuery
       .fetch()
       .then((data) => {
-        console.log(
-          data[0].get("token") == window.location.href.split("/").slice(-1),
-          router.query.id
-        );
+        if (!data) return;
         const filteredData = data
           .filter((item) => {
             return (
