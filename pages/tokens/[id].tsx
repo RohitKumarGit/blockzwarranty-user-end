@@ -36,12 +36,12 @@ const TokenDetails: NextPage = () => {
     { autoFetch: false }
   );
   const router = useRouter();
-  useEffect(() => {
-    console.log("useeffect");
+  const fetchData = function () {
     setLoading(true);
     allMintedTokenQuery
       .fetch()
       .then((data) => {
+        console.log(data);
         if (!data) {
           data = [];
         }
@@ -78,6 +78,17 @@ const TokenDetails: NextPage = () => {
         console.log(err);
         message.error("Some thing went wrong");
       });
+  };
+  useEffect(() => {
+    console.log("useeffect");
+    fetchData();
+    setTimeout(() => {
+      console.log(transactions.length);
+      if (transactions.length === 0) {
+        fetchData();
+      }
+    }),
+      1000;
   }, []);
   const column = [
     {
