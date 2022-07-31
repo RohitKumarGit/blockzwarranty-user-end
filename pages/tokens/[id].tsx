@@ -37,11 +37,14 @@ const TokenDetails: NextPage = () => {
   );
   const router = useRouter();
   useEffect(() => {
+    console.log("useeffect");
     setLoading(true);
     allMintedTokenQuery
       .fetch()
       .then((data) => {
-        if (!data) return;
+        if (!data) {
+          data = [];
+        }
         const filteredData = data
           .filter((item) => {
             return (
